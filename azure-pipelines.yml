@@ -19,11 +19,11 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'DockerHub'
+    containerRegistry: 'scdocker'
     command: 'login'
 - task: Docker@2
   inputs:
-    containerRegistry: 'DockerHub'
+    containerRegistry: 'scdocker'
     repository: 'Demo Web App'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
