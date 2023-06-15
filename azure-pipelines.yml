@@ -20,6 +20,14 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'DockerHub'
+    command: 'login'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerHub'
     repository: 'Demo Web App'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+
+- task: Docker@2
+  inputs:
+    command: 'logout'
