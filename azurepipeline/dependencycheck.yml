@@ -1,4 +1,7 @@
 steps:
+  - script: |
+      npm install
+    displayName: 'npm install'
   - task: dependency-check-build-task@6
     inputs:
       projectName: $(System.TeamProject)
