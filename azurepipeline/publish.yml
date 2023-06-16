@@ -1,4 +1,21 @@
-# steps:
+steps:
+  - task: UseDotNet@2
+    inputs:
+    version: '5.x'
+  - script: |
+      dotnet tool install --global Microsoft.CodeAnalysis.Sarif.Multitool
+      sarif-multitool merge -o merged.sarif trivyimagescan.sarif trivycodescan.sarif
+    displayName: 'Merge SARIF files'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+        targetPath: $(Pipeline.Workspace)/merged.sarif
+        artifact: 'CodeAnalysisLogs'
+        publishLocation: 'pipeline'
+    displayName: 'publish trivyimagescan.sarif'
+
+
+# steps: 
 #   - task: PublishPipelineArtifact@1
 #     inputs:
 #         targetPath: $(Pipeline.Workspace)/trivyimagescan.sarif
@@ -12,12 +29,7 @@
 #         artifact: 'CodeAnalysisLogs code vulnerability secret config'
 #         publishLocation: 'pipeline'
 #     displayName: 'publish trivycodescan.sarif'
-steps:
-    - task: PublishCodeAnalysis@1
-      inputs:
-        codeAnalysisTool: 'SARIF'
-        codeAnalysisConfig: '**/*.sarif'
-        failTaskOnFailedTests: true
+
 # steps:
 #   - task: PublishPipelineArtifact@1
 #     inputs:
