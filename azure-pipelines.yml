@@ -42,10 +42,13 @@ jobs:
 
   - script: |
       docker run --name trivyimagescanner aquasec/trivy image --format sarif -o ./trivyimagescan.sarif greede14/demoapp-intern:latest
-      docker exec trivyimagescanner fs --scanners vuln,secret,config --format sarif -o ./trivycodescan.sarif $(Pipeline.Workspace)
+      docker run trivycodescanner aquasec/trivy fs --scanners vuln,secret,config --format sarif -o ./trivycodescan.sarif $(Pipeline.Workspace)
+
       docker cp trivyimagescanner:trivyimagescan.sarif $(Pipeline.Workspace)
       docker cp trivyimagescanner:trivycodescan.sarif $(Pipeline.Workspace)
-#     docker rm -f trivyimagescanner
+      
+      docker rm -f trivyimagescanner
+      docker rm -f trivycodescanner
     displayName: 'Trivy image scan'
   - task: PublishPipelineArtifact@1
     inputs:
