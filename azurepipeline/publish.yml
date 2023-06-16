@@ -12,14 +12,19 @@
 #         artifact: 'CodeAnalysisLogs code vulnerability secret config'
 #         publishLocation: 'pipeline'
 #     displayName: 'publish trivycodescan.sarif'
-
 steps:
-  - task: PublishPipelineArtifact@1
-    inputs:
-        targetPath: $(Pipeline.Workspace)/*.sarif
-        artifact: 'CodeAnalysisLogs'
-        publishLocation: 'pipeline'
-    displayName: 'publish trivyimagescan.sarif'
+    - task: PublishCodeAnalysis@1
+      inputs:
+        codeAnalysisTool: 'SARIF'
+        codeAnalysisConfig: '**/*.sarif'
+        failTaskOnFailedTests: true
+# steps:
+#   - task: PublishPipelineArtifact@1
+#     inputs:
+#         targetPath: $(Pipeline.Workspace)/*.sarif
+#         artifact: 'CodeAnalysisLogs'
+#         publishLocation: 'pipeline'
+#     displayName: 'publish trivyimagescan.sarif'
 
   # - task: PublishPipelineArtifact@1
   #   inputs:
