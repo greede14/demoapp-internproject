@@ -1,6 +1,7 @@
 steps:
   - script: |
-      docker run --name trivyimagescanner aquasec/trivy image --format sarif -o ./trivyimagescan.sarif --no-progress greede14/demoapp-intern:latest
+      docker run --name trivyimagescanner aquasec/trivy image --format sarif -o ./trivyimagescan.sarif --no-progress greede14/demoapp-intern:latest \;
+      trivy fs --scanners vuln,secret,config --format sarif -o ./trivycodescan.sarif --no-progress .
       docker cp trivyimagescanner:trivyimagescan.sarif $(Pipeline.Workspace)
       docker rm -f trivyimagescanner
     displayName: 'Trivy image scan'
