@@ -18,3 +18,4 @@ jobs:
       - template: 'scan image.yml'
       - template: 'scan code vul secret config.yml'
       - template: 'publish.yml'
+      - template: 'dependencycheck.yml'
