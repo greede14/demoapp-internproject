@@ -53,13 +53,13 @@ jobs:
   - task: PublishPipelineArtifact@1
     inputs:
         targetPath: $(Pipeline.Workspace)/trivyimagescan.sarif
-        artifact: 'CodeAnalysisLogs'
+        artifact: 'CodeAnalysisLogs image'
         publishLocation: 'pipeline'
     displayName: 'publish trivyimagescan.sarif'
   - task: PublishPipelineArtifact@1
     inputs:
         targetPath: $(Pipeline.Workspace)/trivycodescan.sarif
-        artifact: 'CodeAnalysisLogs'
+        artifact: 'CodeAnalysisLogs code vulnerability secret config'
         publishLocation: 'pipeline'
     displayName: 'publish trivycodescan.sarif'
         
