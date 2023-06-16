@@ -21,9 +21,22 @@ jobs:
       docker push greede14/demoapp-intern:latest
     displayName: 'Build and Push Docker Image'
 
+
+
+  - script: |
+      docker save -t greede14/demoapp-intern:latest -o $(Pipeline.Workspace)/demoapp-intern-image.tar
+    displayName: 'save docker image as file'
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+        targetPath: '$(Pipeline.Workspace)/demoapp-intern-image.tar'
+        artifact: 'docker image artifact'
+        publishLocation: 'pipeline'
   - task: Docker@2
     displayName: 'Logout from Docker Hub'
     inputs:
       command: logout
       containerRegistry: 'dockerhub'
       dockerRegistryConnection: 'DockerHub' # Replace with your Docker Hub service connection name
+
+      
