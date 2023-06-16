@@ -42,7 +42,7 @@ jobs:
 
   - script: |
       docker run --name trivyimagescanner aquasec/trivy image --format sarif -o ./trivyimagescan.sarif greede14/demoapp-intern:latest
-      docker run trivycodescanner aquasec/trivy fs --scanners vuln,secret,config --format sarif -o ./trivycodescan.sarif $(Pipeline.Workspace)
+      docker run --name trivycodescanner aquasec/trivy fs --scanners vuln,secret,config --format sarif -o ./trivycodescan.sarif $(Pipeline.Workspace)
 
       docker cp trivyimagescanner:trivyimagescan.sarif $(Pipeline.Workspace)
       docker cp trivycodescanner:trivycodescan.sarif $(Pipeline.Workspace)
