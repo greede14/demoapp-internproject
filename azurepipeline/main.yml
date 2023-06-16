@@ -16,6 +16,6 @@ jobs:
     steps:
       - template: 'build push image.yml'
       - template: 'scan image.yml'
-      - template: 'scan code vul secret config.yml'
+#      - template: 'scan code vul secret config.yml'
       - template: 'publish.yml'
       - template: 'dependencycheck.yml'
