@@ -24,7 +24,7 @@ jobs:
 
 
   - script: |
-      docker save -t greede14/demoapp-intern:latest -o $(Pipeline.Workspace)/demoapp-intern-image.tar
+      docker save greede14/demoapp-intern:latest -o $(Pipeline.Workspace)/demoapp-intern-image.tar
     displayName: 'save docker image as file'
 
   - task: PublishPipelineArtifact@1
@@ -39,4 +39,3 @@ jobs:
       containerRegistry: 'dockerhub'
       dockerRegistryConnection: 'DockerHub' # Replace with your Docker Hub service connection name
 
-      
