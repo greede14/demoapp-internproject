@@ -1,3 +1,4 @@
+steps:
   - task: PublishPipelineArtifact@1
     inputs:
         targetPath: $(Pipeline.Workspace)/trivyimagescan.sarif
