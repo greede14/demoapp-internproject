@@ -50,9 +50,7 @@ jobs:
         targetPath: '$(Pipeline.Workspace)/trivyimagescan.sarif'
         artifact: 'CodeAnalysisLogs'
         publishLocation: 'pipeline'
-
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
-      publishLocation: 'Container'
+      pathToPublish: $(Pipeline.Workspace)/trivyimagescan.sarif
+      artifactName: CodeAnalysisLogs
