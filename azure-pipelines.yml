@@ -17,8 +17,8 @@ jobs:
       dockerRegistryConnection: 'DockerHub' # Replace with your Docker Hub service connection name
 
   - script: |
-      docker build -t demo-internproject:latest .
-      docker push demo-internproject:latest
+      docker build -t greede14/demoapp-intern:latest .
+      docker push greede14/demoapp-intern:latest
     displayName: 'Build and Push Docker Image'
 
   - task: Docker@2
