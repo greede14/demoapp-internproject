@@ -19,6 +19,7 @@ jobs:
   - script: |
       docker build -t greede14/demoapp-intern:latest .
       docker push greede14/demoapp-intern:latest
+      docker rm -f greede14/demoapp-intern:latest
     displayName: 'Build and Push Docker Image'
 
 
@@ -47,6 +48,6 @@ jobs:
   - task: PublishPipelineArtifact@1
     inputs:
         targetPath: '$(Pipeline.Workspace)/trivyimagescan.sarif'
-        artifact: 'Trivy image scan'
+        artifact: 'CodeAnalysisLogs'
         publishLocation: 'pipeline'
 
