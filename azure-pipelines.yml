@@ -39,3 +39,14 @@ jobs:
       containerRegistry: 'dockerhub'
       dockerRegistryConnection: 'DockerHub' # Replace with your Docker Hub service connection name
 
+  - script: |
+      docker run --name trivyimagescanner aquasec/trivy image --format sarif -o ./trivyimagescan.sarif greede14/demoapp-intern:latest
+      docker cp trivyimagescanner:trivyimagescan.sarif $(Pipeline.Workspace)
+      docker rm -f trivyimagescanner
+    displayName: 'Trivy image scan'
+  - task: PublishPipelineArtifact@1
+    inputs:
+        targetPath: '$(Pipeline.Workspace)/trivyimagescan.sarif'
+        artifact: 'Trivy image scan'
+        publishLocation: 'pipeline'
+
