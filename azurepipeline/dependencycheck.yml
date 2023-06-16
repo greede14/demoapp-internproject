@@ -1,11 +1,11 @@
 steps:
   - task: dependency-check-build-task@6
     inputs:
-    projectName: '$(System.TeamProject)'
-    scanPath: '$(Pipeline.Workspace)'
-    format: 'HTML'
-    reportsDirectory: '$(Pipeline.Workspace)'
-    reportFilename: 'DependencyCheck.html'
+      projectName: $(System.TeamProject)
+      scanPath: $(Pipeline.Workspace)
+      format: 'HTML'
+      reportsDirectory: .
+      reportFilename: 'DependencyCheck'
 # jobs:
 #   - job: Dependency Check
 #     displayName: "detect-secrets"
