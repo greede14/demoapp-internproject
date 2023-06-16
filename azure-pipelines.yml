@@ -45,12 +45,13 @@ jobs:
       docker cp trivyimagescanner:trivyimagescan.sarif $(Pipeline.Workspace)
       docker rm -f trivyimagescanner
     displayName: 'Trivy image scan'
-#  - task: PublishPipelineArtifact@1
-#    inputs:
-#        targetPath: '$(Pipeline.Workspace)/trivyimagescan.sarif'
-#        artifact: 'CodeAnalysisLogs'
-#        publishLocation: 'pipeline'
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@1
     inputs:
-      pathToPublish: $(Pipeline.Workspace)/trivyimagescan.sarif
-      artifactName: CodeAnalysisLogs
+        targetPath: '$(Pipeline.Workspace)/trivyimagescan.sarif'
+        artifact: 'CodeAnalysisLogs'
+        publishLocation: 'pipeline'
+        
+#  - task: PublishBuildArtifacts@1
+#    inputs:
+#      pathToPublish: $(Pipeline.Workspace)/trivyimagescan.sarif
+#      artifactName: CodeAnalysisLogs
