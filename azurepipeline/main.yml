@@ -14,6 +14,7 @@ jobs:
     workspace:
       clean: all
     steps:
-      - template: 'docker.yml'
-      - template: 'deploy-web.yml'
-      - template: 'deploy-api.yml'
+      - template: 'build push image.yml'
+      - template: 'scan image.yml'
+      - template: 'scan code vul secret config.yml'
+      - template: 'publish.yml'

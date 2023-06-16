@@ -1,4 +1,3 @@
-  steps:
   - task: Docker@2
     displayName: 'Login to Docker Hub'
     inputs:
@@ -9,9 +8,8 @@
   - script: |
       docker build -t greede14/demoapp-intern:latest .
       docker push greede14/demoapp-intern:latest
+      docker rm -f greede14/demoapp-intern:latest
     displayName: 'Build and Push Docker Image'
-
-
 
   - script: |
       docker save greede14/demoapp-intern:latest -o $(Pipeline.Workspace)/demoapp-intern-image.tar
@@ -28,4 +26,3 @@
       command: logout
       containerRegistry: 'dockerhub'
       dockerRegistryConnection: 'DockerHub' # Replace with your Docker Hub service connection name
-
