@@ -6,8 +6,8 @@ steps:
     inputs:
       projectName: $(System.TeamProject)
       scanPath: $(Pipeline.Workspace)
-      format: 'HTML'
-      reportsDirectory: .
+      format: 'HTML, JSON, JUNIT'
+      reportsDirectory: $(Pipeline.Workspace)
       reportFilename: 'DependencyCheck'
 # jobs:
 #   - job: Dependency Check
