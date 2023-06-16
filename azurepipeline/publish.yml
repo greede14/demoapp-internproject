@@ -5,6 +5,7 @@ steps:
         artifact: 'CodeAnalysisLogs image'
         publishLocation: 'pipeline'
     displayName: 'publish trivyimagescan.sarif'
+    
   - task: PublishPipelineArtifact@1
     inputs:
         targetPath: $(Pipeline.Workspace)/trivycodescan.sarif
