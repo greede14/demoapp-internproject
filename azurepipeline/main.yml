@@ -1,0 +1,19 @@
+pr: none
+
+trigger:
+  branches:
+    include:
+      - master
+pool:
+  name: default
+
+
+jobs:
+  - job: test
+    displayName: 'Demo app internship project'
+    workspace:
+      clean: all
+    steps:
+      - template: 'docker.yml'
+      - template: 'deploy-web.yml'
+      - template: 'deploy-api.yml'
